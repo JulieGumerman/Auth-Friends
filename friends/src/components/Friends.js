@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import FriendCard from "./FriendCard";
 const Friends = () => {
 
     const [friends, setFriends] = useState({friends: []});
@@ -49,7 +49,7 @@ const Friends = () => {
             <input type="text" name="email" placeholder="age" value={newFriend.email} onChange={handleChange}/>
             <button>addFriend</button>
         </form>
-        {friends.friends.map(friend =><h1 key={friend.id}>{friend.name}</h1>)}  
+        {friends.friends.map(friend =><FriendCard friend={friend} key={friend.id}/>)}  
         </>
     )
 }
