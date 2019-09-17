@@ -15,7 +15,7 @@ const Login = props => {
             .post("/login", state.credentials)
             .then(res => {
                 console.log(res);
-                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("token", res.data.payload);
                 props.history.push("/friends");
             
             })
