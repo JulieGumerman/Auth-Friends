@@ -29,7 +29,7 @@ const Login = props => {
             <h2>Log in here!</h2>
             <form onSubmit={login}>
                 <input type="text" name="username" placeholder="name" value={state.credentials.username} onChange={handleChange}/>
-                <input type="text" name="password" placeholder="password" value={state.credentials.password} onChange={handleChange}/>
+                <input type="password" name="password" placeholder="password" value={state.credentials.password} onChange={handleChange}/>
                 <button>Log in!</button>
             </form>
         </>
