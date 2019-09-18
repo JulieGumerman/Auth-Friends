@@ -44,7 +44,6 @@ const Friends = () => {
     }
 
     const editFriend = id => {
-        alert("Always be my friend!!!");
 
         axiosWithAuth().put(`/friends/${id}`, newFriend)
             .then(res=> getFriends())
