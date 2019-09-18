@@ -34,8 +34,13 @@ const Friends = () => {
     const handleChange = e => {
         setNewFriend({...newFriend, [e.target.name]: e.target.value});
 
+    }
 
-
+    const deleteFriend = id => {
+            console.log("delete");
+            axiosWithAuth().delete(`/friends/${id}`)
+            .then(res => getFriends())
+            .catch(err => console.log(err));
     }
 
 
@@ -49,7 +54,7 @@ const Friends = () => {
             <input type="text" name="email" placeholder="age" value={newFriend.email} onChange={handleChange}/>
             <button>addFriend</button>
         </form>
-        {friends.friends.map(friend =><FriendCard friend={friend} key={friend.id}/>)}  
+        {friends.friends.map(friend =><FriendCard friend={friend} key={friend.id} deleteFriend={deleteFriend}/>)}  
         </>
     )
 }
