@@ -43,6 +43,14 @@ const Friends = () => {
             .catch(err => console.log(err));
     }
 
+    const editFriend = id => {
+        alert("Always be my friend!!!");
+
+        axiosWithAuth().put(`/friends/${id}`, newFriend)
+            .then(res=> getFriends())
+            .catch(err => console.log(err));
+    }
+
 
 
     return (
@@ -54,7 +62,7 @@ const Friends = () => {
             <input type="text" name="email" placeholder="age" value={newFriend.email} onChange={handleChange}/>
             <button>addFriend</button>
         </form>
-        {friends.friends.map(friend =><FriendCard friend={friend} key={friend.id} deleteFriend={deleteFriend}/>)}  
+        {friends.friends.map(friend =><FriendCard friend={friend} key={friend.id} deleteFriend={deleteFriend} editFriend={editFriend}/>)}  
         </>
     )
 }
