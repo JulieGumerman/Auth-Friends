@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import FriendCard from "./FriendCard";
+
+
 const Friends = () => {
 
     const [friends, setFriends] = useState({friends: []});
-    const [newFriend, setNewFriend ] = useState({id: "", name: "", age: "", email: ""})
+    const [newFriend, setNewFriend ] = useState({id: "", name: "", age: "", email: ""});
+    const [friendUpdate, setFriendUpdate] = useState({id: "", name: "", age: "", email: ""})
 
     useEffect(() => {
         getFriends();
@@ -15,10 +18,8 @@ const Friends = () => {
         e.preventDefault();
         axiosWithAuth().post("/friends", newFriend)
             .then(res => {
-
                 getFriends();
-            }
-            )
+            })
             .catch(res => console.log(res))
 
     }
@@ -36,6 +37,8 @@ const Friends = () => {
 
     }
 
+
+
     const deleteFriend = id => {
             console.log("delete");
             axiosWithAuth().delete(`/friends/${id}`)
@@ -43,11 +46,17 @@ const Friends = () => {
             .catch(err => console.log(err));
     }
 
-    const editFriend = id => {
-
-        axiosWithAuth().put(`/friends/${id}`, newFriend)
-            .then(res=> getFriends())
+    const editFriend = (e, friend, friendUpdate) => {
+        e.preventDefault();
+        axiosWithAuth().put(`/friends/${friend.id}`, friendUpdate)
+            .then(res=> {
+                getFriends();
+            })
             .catch(err => console.log(err));
+    }
+    
+    const handleEdit = (event, friend) => {
+        setFriendUpdate({...friend, [event.target.name]: event.target.value})
     }
 
 
@@ -59,9 +68,23 @@ const Friends = () => {
             <input type="text" name="name" placeholder="name" value={newFriend.name} onChange={handleChange}/>
             <input type="text" name="age" placeholder="age" value={newFriend.age} onChange={handleChange}/>
             <input type="text" name="email" placeholder="age" value={newFriend.email} onChange={handleChange}/>
-            <button>addFriend</button>
+            <button>Add Friend</button>
         </form>
-        {friends.friends.map(friend =><FriendCard friend={friend} key={friend.id} deleteFriend={deleteFriend} editFriend={editFriend}/>)}  
+
+        <div className="card-container">
+        {friends.friends.map(friend =>{
+        return (
+        <FriendCard 
+            friend={friend} 
+            key={friend.id} 
+            deleteFriend={deleteFriend}
+            editFriend={editFriend}
+            handleEdit={handleEdit}
+            friendUpdate={friendUpdate}
+            />) })}
+         
+        </div>
+
         </>
     )
 }

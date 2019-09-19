@@ -7,7 +7,7 @@ $mean-girl-pink: #F95AA4;
   text-align: center;
 }
 
-
+/*********Form***************/
 form {
   display: flex;
   flex-direction: column;
@@ -16,6 +16,8 @@ form {
 
   input {
     height: 30px;
+    margin-bottom: 25px;
+    border-radius: 5px;
   }
 
   button {
@@ -24,5 +26,64 @@ form {
     background: $mean-girl-pink;
     font-size: 20px;
     color: white;
+    border: 3px gray solid;
+    margin-bottom: 20px;
+  }
+}
+
+/******Friend Card and Card Holder********/
+.card-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+
+  .friend-card {
+    border: 1px solid gray;
+    width: 250px;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    margin: 20px;
+
+
+    a {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      text-decoration: none;
+      padding-bottom: 15px;
+      font-size: 20px;
+
+        }
+    
+    form {
+      width: 100%;
+
+      i {
+        color: black;
+      }
+    }
+
+
+    button {
+      border: none;
+      background: none;
+      color: black;
+    }
+
+ 
+  }
+}
+
+.button-box {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  
+  i {
+    font-size: 20px;
   }
 }
